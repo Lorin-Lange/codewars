@@ -7,12 +7,10 @@
 module NearestSquare where 
 
 nearestSquare :: Int -> Int
-nearestSquare n
-    | (u^2 - n) < (n - l^2) = u^2 
-    | otherwise             = l^2
-  where r = sqrt $ fromIntegral n
-        l = floor r
-        u = ceiling r
+nearestSquare n =
+  let lb = floor $ sqrt $ fromIntegral n
+      ub = ceiling $ sqrt $ fromIntegral n
+  in if (ub^2 - n) < (n - lb^2) then ub^2 else lb^2
 
 nearestSquare' :: Int -> Int
 nearestSquare' n = test [x*x | x <- [0..]]
